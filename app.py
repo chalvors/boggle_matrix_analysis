@@ -1,32 +1,57 @@
 #boggle matrix analysis main app
 
-import tkinter as tk
+def find_adjacent_nodes(row_index, col_index):
+    adjacent_nodes = []
+    temp_num_pair = []
+    count = 0
 
-def init_board():
-    master = tk.Tk()
+    while count < 9:
+        if count == 0:
+            temp_num_pair = [row_index-1, col_index-1]
+        elif count == 1:
+            temp_num_pair = [row_index-1, col_index]
+        elif count == 2:
+            temp_num_pair = [row_index-1, col_index+1]
+        elif count == 3:
+            temp_num_pair = [row_index, col_index+1]
+        elif count == 4:
+            temp_num_pair = [row_index+1, col_index+1]
+        elif count == 5:
+            temp_num_pair = [row_index+1, col_index]
+        elif count == 6:
+            temp_num_pair = [row_index+1, col_index-1]
+        elif count == 1:
+            temp_num_pair = [row_index, col_index-1]
+
+        adjacent_nodes.append(temp_num_pair)
+        count += 1
     
-    e1 = tk.Entry(master)
-    e2 = tk.Entry(master)
-    e3 = tk.Entry(master)
-    e4 = tk.Entry(master)
-    e5 = tk.Entry(master)
-    e6 = tk.Entry(master)
-    e7 = tk.Entry(master)
-    e8 = tk.Entry(master)
-    e9 = tk.Entry(master)
+    print(adjacent_nodes)
 
-    e1.grid(row=0, column=0)
-    e2.grid(row=0, column=1)
-    e3.grid(row=0, column=2)
+    
 
-    e4.grid(row=1, column=0)
-    e5.grid(row=1, column=1)
-    e6.grid(row=1, column=2)
+def find_center_nodes():
+    row_index = 0
+    col_index = 0
 
-    e7.grid(row=2, column=0)
-    e8.grid(row=2, column=1)
-    e9.grid(row=2, column=2)
+    while row_index < 3:
+        while col_index < 3:
+            if row_index != 0 and row_index != 2:
+                if col_index != 0 and col_index != 2:
+                    print(matrix_values[row_index][col_index])
+                    find_adjacent_nodes(row_index, col_index)
+            col_index += 1
+        row_index += 1
+        col_index = 0
 
-    tk.mainloop()
+matrix_values = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,9]
+]
 
-init_board()
+print(matrix_values)
+print('')
+
+find_center_nodes()
+
